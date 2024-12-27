@@ -1,66 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Wallet README
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
 
-## About Laravel
+An application in which users can have multiple wallets with each wallet type having its own name, minimum balance and monthly interest rate. The wallets should be able to send and receive money from other wallets.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Get all users in the system.
+- Get all wallets in the system.
+- Get a wallet's details including its owner, type and available balance.
+- Send money from one wallet to another.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- **Framework:** Laravel 11
+- **Database:** MySQL
+- **API:** RESTful APIs
+- **Version Control:** Git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Prerequisites
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP >= 8.1
+- Composer
+- MySQL
 
-## Laravel Sponsors
+### Steps
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone the repository:**
 
-### Premium Partners
+   ```bash
+   git clone https://github.com/mj-ad/Wallet.git
+   cd Wallet
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. **Install dependencies:**
 
-## Contributing
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Copy .env file and configure your environment:**
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Generate application key:**
 
-## Security Vulnerabilities
+   ```bash
+   php artisan key:generate
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Run migrations:**
 
-## License
+   ```bash
+   php artisan migrate
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. **Start the development server:**
+
+   ```bash
+   php artisan serve
+   ```
+
+## Configuration
+
+Configure the `.env` file with your database details. Ensure the following environment variables are set:
+
+```env
+APP_NAME=Wallet
+APP_ENV=local
+APP_KEY=base64:...
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=wallet
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## Project Structure
+
+```bash
+Wallet/
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+├── routes/
+├── storage/
+├── tests/
+├── vendor/
+├── .env.example
+├── artisan
+├── composer.json
+├── package.json
+└── webpack.mix.js
+```
+
+## API Implementation
+
+### Request Methods and URL
+
+| Method | URL | Description|
+| ---- | ---- | ---- |
+| GET | /api/users | Get all Users. |
+| GET | /api/users/{id} | Get user by id. |
+| POST | /api/users | Create new user instance. |
+| PUT | /api/users/{id} | Update user instance. |
+| DELETE | /api/users/{id} | Delete user instance. |
+| GET | /api/wallets | Get all wallets. |
+| GET | /api/wallets/{id} | Get wallet by id. |
+| POST | /api/wallets | Create new wallet instance. |
+| PUT | /api/wallets/{id} | Update wallet instance. |
+| DELETE | /api/wallets/{id} | Delete wallet instance. |
+| GET | /api/wallet_types | Get all wallet types. |
+| GET | /api/wallet_types/{id} | Get wallet type by id. |
+| POST | /api/wallet_types | Create new wallet type instance. |
+| PUT | /api/wallet_types/{id} | Update wallet type instance. |
+| DELETE | /api/wallet_types/{id} | Delete wallet type instance. |
+| GET | /api/transactions | Get all transactions. |
+| POST | /api/transactions | Send money from one wallet to another. |
+
+### HTTP Response Status Codes
+
+| Code | Title | Description|
+| ---- | ---- | ---- |
+| 200 | OK | When a request was successful e.g when using GET. |
+| 201 | CREATED | When a request is created or updated successfully. |
+| 204 | No content | This occurs after an instance has been deleted. |
+| 400 | Bad Request | When a request is incorrect or could not be understood. |
+| 404 | Not found | This occurs when the user id inputed does not exist. |
+
+### User Fields 
+
+This is an example of the layout to be posted.
+```
+{
+    "name": "MJ Ade",
+    "email": "adeol@mailexample.com"
+}
+```
+
+### Wallet Fields
+
+This is an example of the layout to be posted.
+```
+{
+    "user_id": "77ff30be-5ea4-4f67-840b-5305029a2548",
+    "wallet_type_id": "00679a1f-3981-4291-910b-727e3d157691",
+    "balance": 30000
+}
+```
+
+### Wallet Type Fields
+
+This is an example of the layout to be posted.
+```
+{
+    "name": "Basic",
+    "monthly_interest_rate": 2,
+    "minimum_balance": 20000
+}
+```
+
+### Transaction Fields
+
+To send money from one wallet to another
+```
+{
+    "from_wallet_id": "6c7bcad7-ef93-4fee-ac7b-b797acecfee4",
+    "to_wallet_id": "12c6d23a-3baf-493d-aa70-4f55caca8f69",
+    "amount": 20000
+}
+```
